@@ -9,16 +9,19 @@ exports.getAPI = asyncHandler(async (req, res, next) => {
 
 // compare coords
 exports.getCoordinateComparison = asyncHandler(async (req, res, next) => {
+  // req coordinates OK check
   if (!req.query.xcoord || !req.query.ycoord) {
     return res.json({ message: "Error, input coordinates missing" });
   }
 
   const result = await coordCompare(req.query.xcoord, req.query.ycoord);
 
+  // no match found response
   if (!result) {
-    return res.json({ message: "Not correct, keep trying" });
+    return res.json(false);
   }
 
+  // results are valid, send response
   return res.json(result);
 });
 
@@ -29,4 +32,19 @@ exports.postNewUser = asyncHandler(async (req, res, next) => {
   console.log(response);
 
   return res.json(response);
+});
+
+// PUT user
+exports.putUser = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  // check if ID or body are missing
+  if (
+    typeof req.body.id === "undefined" ||
+    typeof req.params.id === "undefined"
+  ) {
+    return res.json({ message: "Missing body ID or params ID!" });
+  }
+
+  console.log(req.query.id) + `userid`;
+  return res.json("ok");
 });

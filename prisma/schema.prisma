@@ -18,6 +18,9 @@ model User {
   username String?
   starttime DateTime?
   endtime DateTime?
+  matchone Boolean?
+  matchtwo Boolean?
+  matchthree Boolean?
 }
 
 model coordinates {

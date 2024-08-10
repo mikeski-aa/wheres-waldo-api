@@ -11,4 +11,11 @@ router.get("/check", apiController.getCoordinateComparison);
 // post a new user
 router.post("/newuser", apiController.postNewUser);
 
+router.put("/putuser/", (req, res) => {
+  res.send("dd");
+});
+
+// update user
+router.put("/putuser/:id", apiController.putUser);
+
 module.exports = router;

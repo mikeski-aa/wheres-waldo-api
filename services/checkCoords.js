@@ -33,12 +33,11 @@ module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
 
     const compareResult = compareCoordinates(response, xcoord, ycoord);
 
+    // if the result is undefined, return false!
     if (typeof compareResult === "undefined") {
-      console.log(false);
       return false;
     }
 
-    console.log(compareResult);
     return compareResult;
   } catch (error) {
     next(error);
