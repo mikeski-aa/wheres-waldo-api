@@ -14,7 +14,7 @@ async function newUser() {
 
     return response;
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 }
 

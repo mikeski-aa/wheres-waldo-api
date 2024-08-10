@@ -1,18 +1,12 @@
 const { PrismaClient } = require("@prisma/client");
 
-module.exports.stopTime = async (userId) => {
+async function stopTimer(userId) {
   const prisma = new PrismaClient();
-  // probably need to add something in case user is not found
-
-  if (!userId) {
-    const error = "User parameter not provided";
-    return error;
-  }
 
   try {
     const result = await prisma.user.update({
       where: {
-        id: userId,
+        id: +userId,
       },
       data: {
         endtime: new Date(),
@@ -21,6 +15,8 @@ module.exports.stopTime = async (userId) => {
 
     return result;
   } catch (error) {
-    next(error);
+    console.log(error);
   }
-};
+}
+
+module.exports = { stopTimer };

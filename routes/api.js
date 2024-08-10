@@ -11,11 +11,16 @@ router.get("/check", apiController.getCoordinateComparison);
 // post a new user
 router.post("/newuser", apiController.postNewUser);
 
-router.put("/putuser/", (req, res) => {
-  res.send("dd");
-});
-
-// update user
+// put user
 router.put("/putuser/:id", apiController.putUser);
+
+// GET win
+router.get("/checkwin/:id", apiController.getWin);
+
+// put user timer
+router.put("/puttimer/:id", apiController.putTimer);
+
+// get difference between start and finish
+router.get("/getfinaltime/:id", apiController.getFinalTime);
 
 module.exports = router;

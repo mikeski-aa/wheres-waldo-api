@@ -20,7 +20,7 @@ async function updateUser(userId, itemId) {
 
       return response;
     } catch (error) {
-      next(error);
+      console.log(error);
     }
   } else if (+itemId === 2) {
     try {
@@ -34,7 +34,7 @@ async function updateUser(userId, itemId) {
       });
       return response;
     } catch (error) {
-      next(error);
+      console.log(error);
     }
   } else {
     try {
@@ -48,7 +48,7 @@ async function updateUser(userId, itemId) {
       });
       return response;
     } catch (error) {
-      next(error);
+      console.log(error);
     }
   }
 }

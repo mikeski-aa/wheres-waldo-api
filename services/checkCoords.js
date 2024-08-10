@@ -30,7 +30,6 @@ module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
 
   try {
     const response = await prisma.coordinates.findMany();
-
     const compareResult = compareCoordinates(response, xcoord, ycoord);
 
     // if the result is undefined, return false!
@@ -40,7 +39,7 @@ module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
 
     return compareResult;
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
 // checkCoords("1456", 781);

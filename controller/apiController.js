@@ -2,6 +2,10 @@ const asyncHandler = require("express-async-handler");
 const coordCompare = require("../services/checkCoords").coordCompare;
 const newUser = require("../services/userCreate").newUser;
 const updateUser = require("../services/userUpdate").updateUser;
+const checkWin = require("../services/checkWin").checkWin;
+const stopTimer = require("../services/stopTimer").stopTimer;
+const getTimee = require("../services/getTime").getTime;
+
 // call main api
 exports.getAPI = asyncHandler(async (req, res, next) => {
   res.json({ message: "API called" });
@@ -44,7 +48,38 @@ exports.putUser = asyncHandler(async (req, res, next) => {
     return res.json({ message: "Missing body ID or params ID!" });
   }
 
-  const test = await updateUser(req.params.id, req.body.id);
-  console.log(test.matchone);
+  const response = await updateUser(req.params.id, req.body.id);
   return res.json("ok");
+});
+
+// get win condition true or false
+exports.getWin = asyncHandler(async (req, res, next) => {
+  // check if the ID was parsed correctly
+  if (!req.params.id) {
+    return res.json({ message: "User ID is missing!" });
+  }
+
+  const response = await checkWin(req.params.id);
+
+  return res.json(response);
+});
+
+// put user to stop timer
+exports.putTimer = asyncHandler(async (req, res, next) => {
+  if (!req.params.id) {
+    return res.json({ message: "User ID is missing!" });
+  }
+
+  const response = await stopTimer(req.params.id);
+  return res.json(response);
+});
+
+// get final time
+exports.getFinalTime = asyncHandler(async (req, res, next) => {
+  if (!req.params.id) {
+    return res.json({ message: "User ID is missing!" });
+  }
+
+  const response = await getTime(req.params.id);
+  return res.json(response);
 });
