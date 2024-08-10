@@ -1,16 +1,24 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const cors = require("cors");
 
-var indexRouter = require("./routes/index");
+// cors package requierd to allow cross-origins requests to the APIs
+const corsOptions = {
+  origin: "*",
+};
+
+const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
 
 var app = express();
 // var listener = app.listen(3000, function () {
 //   console.log("Listening on port " + listener.address().port); //Listening on port 3000
 // });
+
+app.use(cors(corsOptions));
 
 app.use(logger("dev"));
 app.use(express.json());
