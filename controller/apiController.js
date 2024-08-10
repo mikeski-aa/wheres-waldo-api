@@ -18,6 +18,8 @@ exports.getCoordinateComparison = asyncHandler(async (req, res, next) => {
   if (!result) {
     return res.json({ message: "Not correct, keep trying" });
   }
+
+  return res.json(result);
 });
 
 // POST new user
