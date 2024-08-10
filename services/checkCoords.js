@@ -1,7 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 
-async function checkCoords(xcoord, ycoord) {
-  const prisma = new PrismaClient();
+function compareCoordinates(dbArray, xcoord, ycoord) {
   const coordranges = {
     minx: +xcoord - 8,
     maxx: +xcoord + 8,
@@ -9,32 +8,44 @@ async function checkCoords(xcoord, ycoord) {
     maxy: +ycoord + 8,
   };
 
-  try {
-    const response = await prisma.coordinates.findMany();
-
-    for (let x = 0; x < response.length; x++) {
+  // loop to go through array. Simple array of possible coordinates hence why I'm doing a loop here instead of sorting array on DB level
+  for (let x = 0; x < dbArray.length; x++) {
+    if (
+      dbArray[x].xcoord >= coordranges.minx &&
+      dbArray[x].xcoord <= coordranges.maxx
+    ) {
       if (
-        response[x].xcoord >= coordranges.minx &&
-        response[x].xcoord <= coordranges.maxx
+        dbArray[x].ycoord >= coordranges.miny &&
+        dbArray[x].ycoord <= coordranges.maxy
       ) {
-        if (
-          response[x].ycoord >= coordranges.miny &&
-          response[x].ycoord <= coordranges.maxy
-        ) {
-          return console.log(response[x]);
-        } else {
-          return null;
-        }
+        return dbArray[x];
       } else {
         return null;
       }
+    } else {
+      return null;
+    }
+  }
+}
+
+module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
+  const prisma = new PrismaClient();
+
+  try {
+    const response = await prisma.coordinates.findMany();
+
+    const compareResult = compareCoordinates(response, xcoord, ycoord);
+
+    if (compareResult === null) {
+      console.log(false);
+      return false;
     }
 
-    // console.log(response);
-    // console.log(coordranges);
+    console.log(compareResult);
+    return compareResult;
   } catch (error) {
     next(error);
   }
-}
-checkCoords("1456", 781);
+};
+// checkCoords("1456", 781);
 // 1456, 781
