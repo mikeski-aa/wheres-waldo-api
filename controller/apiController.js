@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const coordCompare = require("../services/checkCoords").coordCompare;
 const newUser = require("../services/userCreate").newUser;
-
+const updateUser = require("../services/userUpdate").updateUser;
 // call main api
 exports.getAPI = asyncHandler(async (req, res, next) => {
   res.json({ message: "API called" });
@@ -36,7 +36,6 @@ exports.postNewUser = asyncHandler(async (req, res, next) => {
 
 // PUT user
 exports.putUser = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
   // check if ID or body are missing
   if (
     typeof req.body.id === "undefined" ||
@@ -45,6 +44,7 @@ exports.putUser = asyncHandler(async (req, res, next) => {
     return res.json({ message: "Missing body ID or params ID!" });
   }
 
-  console.log(req.query.id) + `userid`;
+  const test = await updateUser(req.params.id, req.body.id);
+  console.log(test.matchone);
   return res.json("ok");
 });
