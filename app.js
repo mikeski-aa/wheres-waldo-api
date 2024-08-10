@@ -5,11 +5,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
+const apiRouter = require("./routes/api");
 
 var app = express();
-var listener = app.listen(3000, function () {
-  console.log("Listening on port " + listener.address().port); //Listening on port 3000
-});
+// var listener = app.listen(3000, function () {
+//   console.log("Listening on port " + listener.address().port); //Listening on port 3000
+// });
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

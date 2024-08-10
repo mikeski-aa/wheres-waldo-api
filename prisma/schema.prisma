@@ -18,3 +18,10 @@ model User {
   username String
   time DateTime
 }
+
+model coordinates {
+  id Int @id @default(autoincrement())
+  name String
+  xcoord Int
+  ycoord Int
+}
