@@ -4,7 +4,7 @@ const newUser = require("../services/userCreate").newUser;
 const updateUser = require("../services/userUpdate").updateUser;
 const checkWin = require("../services/checkWin").checkWin;
 const stopTimer = require("../services/stopTimer").stopTimer;
-const getTimee = require("../services/getTime").getTime;
+const getTime = require("../services/getTime").getTime;
 
 // call main api
 exports.getAPI = asyncHandler(async (req, res, next) => {
