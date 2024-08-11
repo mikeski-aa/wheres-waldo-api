@@ -37,6 +37,8 @@ module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
       return false;
     }
 
+    // user selection needs to match the id of item being selected too!
+
     return compareResult;
   } catch (error) {
     console.log(error);

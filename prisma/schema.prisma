@@ -21,6 +21,7 @@ model User {
   matchone Boolean?
   matchtwo Boolean?
   matchthree Boolean?
+  gametime Float?
 }
 
 model coordinates {
