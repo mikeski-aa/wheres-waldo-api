@@ -16,11 +16,15 @@ exports.getAPI = asyncHandler(async (req, res, next) => {
 // compare coords
 exports.getCoordinateComparison = asyncHandler(async (req, res, next) => {
   // req coordinates OK check
-  if (!req.query.xcoord || !req.query.ycoord) {
+  if (!req.query.xcoord || !req.query.ycoord || !req.query.targetid) {
     return res.json({ message: "Error, input coordinates missing" });
   }
 
-  const result = await coordCompare(req.query.xcoord, req.query.ycoord);
+  const result = await coordCompare(
+    req.query.xcoord,
+    req.query.ycoord,
+    req.query.targetid
+  );
 
   // no match found response
   if (!result) {

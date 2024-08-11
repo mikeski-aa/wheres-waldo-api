@@ -25,7 +25,7 @@ function compareCoordinates(dbArray, xcoord, ycoord) {
   }
 }
 
-module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
+module.exports.coordCompare = async (xcoord, ycoord, targetid) => {
   const prisma = new PrismaClient();
 
   try {
@@ -38,7 +38,9 @@ module.exports.coordCompare = async function checkCoords(xcoord, ycoord) {
     }
 
     // user selection needs to match the id of item being selected too!
-
+    if (compareResult.id != targetid) {
+      return false;
+    }
     return compareResult;
   } catch (error) {
     console.log(error);
