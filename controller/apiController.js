@@ -6,6 +6,7 @@ const checkWin = require("../services/checkWin").checkWin;
 const stopTimer = require("../services/stopTimer").stopTimer;
 const getTime = require("../services/getTime").getTime;
 const putUsername = require("../services/putUsername").putUsername;
+const putFinalTime = require("../services/putFinalTime").putFinalTime;
 const { body, validationResult } = require("express-validator");
 
 // call main api
@@ -108,3 +109,14 @@ exports.putNewUsername = [
     return res.json(response);
   }),
 ];
+
+// put final time
+exports.putGameTime = asyncHandler(async (req, res, next) => {
+  // check values are present in the url
+  if (!req.query.userid || !req.query.time) {
+    return res.json({ message: "Missing query params" });
+  }
+
+  const response = await putFinalTime(req.query.userid, req.query.time);
+  return res.json(response);
+});

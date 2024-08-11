@@ -26,4 +26,7 @@ router.get("/getfinaltime/:id", apiController.getFinalTime);
 // put new username
 router.put("/putname/:id", apiController.putNewUsername);
 
+// put final time
+router.put("/putfinaltime", apiController.putGameTime);
+
 module.exports = router;
