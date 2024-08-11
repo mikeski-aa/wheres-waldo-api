@@ -23,4 +23,7 @@ router.put("/puttimer/:id", apiController.putTimer);
 // get difference between start and finish
 router.get("/getfinaltime/:id", apiController.getFinalTime);
 
+// put new username
+router.put("/putname/:id", apiController.putNewUsername);
+
 module.exports = router;

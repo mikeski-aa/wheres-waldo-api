@@ -2,7 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 
 async function checkWin(userId) {
   const prisma = new PrismaClient();
-
+  console.log(userId);
   try {
     const response = await prisma.user.findUnique({
       where: {

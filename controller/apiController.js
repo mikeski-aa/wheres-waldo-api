@@ -5,6 +5,8 @@ const updateUser = require("../services/userUpdate").updateUser;
 const checkWin = require("../services/checkWin").checkWin;
 const stopTimer = require("../services/stopTimer").stopTimer;
 const getTime = require("../services/getTime").getTime;
+const putUsername = require("../services/putUsername").putUsername;
+const { body, validationResult } = require("express-validator");
 
 // call main api
 exports.getAPI = asyncHandler(async (req, res, next) => {
@@ -58,9 +60,12 @@ exports.getWin = asyncHandler(async (req, res, next) => {
   if (!req.params.id) {
     return res.json({ message: "User ID is missing!" });
   }
+  console.log("REQ PARAMS ID => IS IT BEING SENT?");
+  console.log(req.params.id);
 
   const response = await checkWin(req.params.id);
 
+  console.log(response);
   return res.json(response);
 });
 
@@ -83,3 +88,19 @@ exports.getFinalTime = asyncHandler(async (req, res, next) => {
   const response = await getTime(req.params.id);
   return res.json(response);
 });
+
+// put username
+exports.putNewUsername = [
+  body("username").trim().isLength({ min: 1 }).escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.json(errors.array());
+    }
+
+    const response = await putUsername(req.params.id, req.body.username);
+
+    return res.json(response);
+  }),
+];
