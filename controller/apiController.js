@@ -7,6 +7,8 @@ const stopTimer = require("../services/stopTimer").stopTimer;
 const getTime = require("../services/getTime").getTime;
 const putUsername = require("../services/putUsername").putUsername;
 const putFinalTime = require("../services/putFinalTime").putFinalTime;
+const getLeaderboardData =
+  require("../services/getLeaderboardData").getLeaderboardData;
 const { body, validationResult } = require("express-validator");
 
 // call main api
@@ -118,5 +120,12 @@ exports.putGameTime = asyncHandler(async (req, res, next) => {
   }
 
   const response = await putFinalTime(req.query.userid, req.query.time);
+  return res.json(response);
+});
+
+// get leaderboards
+exports.getLeaderboards = asyncHandler(async (req, res, next) => {
+  const response = await getLeaderboardData();
+
   return res.json(response);
 });

@@ -29,4 +29,7 @@ router.put("/putname/:id", apiController.putNewUsername);
 // put final time
 router.put("/putfinaltime", apiController.putGameTime);
 
+// get leaderboards
+router.get("/getleaderboards", apiController.getLeaderboards);
+
 module.exports = router;
