@@ -24,6 +24,19 @@ async function addCoords(xcoord, ycoord, name) {
   }
 }
 
+async function deleteRecords() {
+  const prisma = new PrismaClient();
+
+  try {
+    const response = await prisma.user.delete();
+
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// deleteRecords();
 // addCoords(1456, 781, "Waldo");
 // addCoords(1313, 614, "Tree guy");
 // addCoords(28, 388, "Chill ski");

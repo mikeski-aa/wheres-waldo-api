@@ -4,14 +4,16 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
+require("dotenv").config();
 
 // cors package requierd to allow cross-origins requests to the APIs
 const corsOptions = {
-  origin: "*",
+  origin: process.env.ORIGIN_URL,
 };
 
 const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
+const { configDotenv } = require("dotenv");
 
 var app = express();
 // var listener = app.listen(3000, function () {
