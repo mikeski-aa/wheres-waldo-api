@@ -27,20 +27,25 @@ function compareCoordinates(dbArray, xcoord, ycoord) {
 
 module.exports.coordCompare = async (xcoord, ycoord, targetid) => {
   const prisma = new PrismaClient();
+  console.log("INPUT VALUES");
+  console.log(xcoord, ycoord, targetid);
 
   try {
     const response = await prisma.coordinates.findMany();
     const compareResult = compareCoordinates(response, xcoord, ycoord);
-
+    console.log("COMPARE RESULT XDDDD");
+    console.log(compareResult);
     // if the result is undefined, return false!
     if (typeof compareResult === "undefined") {
       return false;
     }
-
+    console.log("ID MATCH CHECK:");
+    console.log(compareResult.id == targetid);
     // user selection needs to match the id of item being selected too!
     if (compareResult.id != targetid) {
       return false;
     }
+
     return compareResult;
   } catch (error) {
     console.log(error);

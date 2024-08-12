@@ -13,11 +13,11 @@ async function addCoords(xcoord, ycoord, name) {
       data: {
         name: name,
         xcoord: xcoord,
-        ycoord,
-        ycoord,
+        ycoord: ycoord,
       },
     });
 
+    console.log("finished");
     console.log(response);
   } catch (error) {
     console.log(error);

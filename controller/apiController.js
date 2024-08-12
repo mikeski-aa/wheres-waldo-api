@@ -29,6 +29,8 @@ exports.getCoordinateComparison = asyncHandler(async (req, res, next) => {
     req.query.targetid
   );
 
+  console.log(result);
+
   // no match found response
   if (!result) {
     return res.json(false);
