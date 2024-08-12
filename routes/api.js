@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const apiController = require("../controller/apiController");
+const cleanLeaderboard = require("../middleware/cleanup").cleanLeaderboard;
 
 // API get base route
 router.get("/", apiController.getAPI);
@@ -30,6 +31,6 @@ router.put("/putname/:id", apiController.putNewUsername);
 router.put("/putfinaltime", apiController.putGameTime);
 
 // get leaderboards
-router.get("/getleaderboards", apiController.getLeaderboards);
+router.get("/getleaderboards", cleanLeaderboard, apiController.getLeaderboards);
 
 module.exports = router;

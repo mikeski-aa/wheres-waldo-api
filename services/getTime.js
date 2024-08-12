@@ -27,5 +27,5 @@ async function getTime(userId) {
     console.log(error);
   }
 }
-getTime(14);
+
 module.exports = { getTime };

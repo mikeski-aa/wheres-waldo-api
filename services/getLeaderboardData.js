@@ -6,7 +6,7 @@ async function getLeaderboardData() {
   try {
     const response = await prisma.user.findMany({
       orderBy: {
-        gametime: "ASC",
+        gametime: "asc",
       },
     });
 

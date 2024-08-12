@@ -7,7 +7,7 @@ async function newUser() {
   try {
     const response = await prisma.User.create({
       data: {
-        username: "Unnamed player",
+        username: "Unnamed",
         starttime: new Date(),
       },
     });
