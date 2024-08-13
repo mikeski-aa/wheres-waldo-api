@@ -55,4 +55,4 @@ async function updateUser(userId, itemId) {
   }
 }
 
-module.exports = { updateUser, prisma };
+module.exports = { updateUser };
