@@ -51,5 +51,7 @@ module.exports.coordCompare = async (xcoord, ycoord, targetid) => {
     console.log(error);
   }
 };
+
+module.exports = { compareCoordinates };
 // checkCoords("1456", 781);
 // 1456, 781
