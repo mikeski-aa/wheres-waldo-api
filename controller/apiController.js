@@ -42,6 +42,7 @@ exports.getCoordinateComparison = asyncHandler(async (req, res, next) => {
 
 // POST new user
 exports.postNewUser = asyncHandler(async (req, res, next) => {
+  console.log("test");
   const response = await newUser();
   console.log(response);
 
@@ -59,7 +60,7 @@ exports.putUser = asyncHandler(async (req, res, next) => {
   }
 
   const response = await updateUser(req.params.id, req.body.id);
-  return res.json(response);
+  return res.json("ok");
 });
 
 // get win condition true or false
