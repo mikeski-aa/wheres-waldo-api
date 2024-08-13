@@ -1,11 +1,13 @@
 const { PrismaClient } = require("@prisma/client");
-const { signedCookie } = require("cookie-parser");
+// const prisma = require("../prisma/index");
 
 async function updateUser(userId, itemId) {
   const prisma = new PrismaClient();
   //   1 = waldo
   //   2 = chill ski
   //   3 = tree guy
+
+  console.log("UPDATEUSER RUNNING");
 
   if (+itemId === 1) {
     try {
@@ -53,4 +55,4 @@ async function updateUser(userId, itemId) {
   }
 }
 
-module.exports = { updateUser };
+module.exports = { updateUser, prisma };

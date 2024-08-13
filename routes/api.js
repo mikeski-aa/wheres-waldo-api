@@ -6,10 +6,6 @@ const cleanLeaderboard = require("../middleware/cleanup").cleanLeaderboard;
 // API get base route
 router.get("/", apiController.getAPI);
 
-// router.get("/", function (req, res, next) {
-//   res.json({ message: "API called" });
-// });
-
 // get coordinates and check them
 router.get("/check", apiController.getCoordinateComparison);
 

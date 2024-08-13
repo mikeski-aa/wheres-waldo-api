@@ -59,7 +59,7 @@ exports.putUser = asyncHandler(async (req, res, next) => {
   }
 
   const response = await updateUser(req.params.id, req.body.id);
-  return res.json("ok");
+  return res.json(response);
 });
 
 // get win condition true or false
