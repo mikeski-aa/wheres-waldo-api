@@ -42,7 +42,6 @@ exports.getCoordinateComparison = asyncHandler(async (req, res, next) => {
 
 // POST new user
 exports.postNewUser = asyncHandler(async (req, res, next) => {
-  console.log("test");
   const response = await newUser();
   console.log(response);
 
