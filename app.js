@@ -8,16 +8,11 @@ require("dotenv").config();
 
 // cors package requierd to allow cross-origins requests to the APIs
 const corsOptions = {
-  origin: [
-    process.env.ORIGIN_URL,
-    process.env.ALTERNATIVE_URL,
-    process.env.LOCAL_URL,
-  ],
+  origin: [process.env.ORIGIN_URL, process.env.ALTERNATIVE_URL],
 };
 
 const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
-const { configDotenv } = require("dotenv");
 
 var app = express();
 // var listener = app.listen(3000, function () {
